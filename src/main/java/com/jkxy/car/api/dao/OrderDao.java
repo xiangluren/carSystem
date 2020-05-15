@@ -9,6 +9,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface OrderDao {
 
-    @Insert("insert into ordermessage(carmessageId,buyer,buyCount,isLoan,isInsurance) values(#{carmessageId},#{buyer},#{buyCount},#{isLoan},#{isInsurance})")
+    @Insert("insert into ordermessage(carmessageId,buyer,buyCount,isLoan,isInsurance,creator) values(#{carmessageId},#{buyer},#{buyCount},#{isLoan},#{isInsurance},#{creator})")
     void insertOrder(Order order);
 }

@@ -1,6 +1,7 @@
 package com.jkxy.car.api.pojo;
 
 import javax.validation.constraints.NotBlank;
+import java.util.Date;
 
 public class Order {
 
@@ -11,6 +12,8 @@ public class Order {
     private int buyCount;
     private String isLoan;
     private boolean isInsurance;
+    private String creator;
+    private Date createTime;
 
 
     public int getId() {
@@ -61,5 +64,21 @@ public class Order {
 
     public void setIsLoan(String isLoan) {
         this.isLoan = isLoan;
+    }
+
+    public String getCreator() {
+        return creator;
+    }
+
+    public void setCreator(String creator) {
+        this.creator = creator;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 }

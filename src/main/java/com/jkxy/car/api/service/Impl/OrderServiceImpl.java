@@ -37,18 +37,6 @@ public class OrderServiceImpl implements OrderService {
             throw new Exception("车系ID不能为空");
         }
 
-//        if(!ObjectUtils.isEmpty(car)){
-//            if(car.getInventory()>=order.getBuyCount()){
-//                orderDao.insertOrder(order);
-//                car.setInventory(car.getInventory()-order.getBuyCount());
-//                System.out.println(car.getInventory());
-//                carDao.updateById(car);
-//            }else {
-//                throw new Exception("库存不足");
-//            }
-//        }else {
-//            throw new Exception("空车系");
-//        }
 
         if(car.getInventory()>=order.getBuyCount()){
             orderDao.insertOrder(order);
