@@ -1,11 +1,13 @@
 package com.jkxy.car.api.controller;
 
 import com.jkxy.car.api.pojo.Car;
+import com.jkxy.car.api.pojo.KeyWordPage;
 import com.jkxy.car.api.service.CarService;
 import com.jkxy.car.api.utils.JSONResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -33,11 +35,13 @@ public class CarController {
      * @param id
      * @return
      */
-    @GetMapping("findById/{id}")
-    public JSONResult findById(@PathVariable int id) {
+    //带斜杠是绝对路径，不带是相对路径；目前来看没啥不同
+    @GetMapping("/findById")
+    public JSONResult findById(@RequestParam(value = "id") int id) {
         Car car = carService.findById(id);
         return JSONResult.ok(car);
     }
+
 
     /**
      * 通过车名查询
@@ -84,5 +88,26 @@ public class CarController {
     public JSONResult insertCar(Car car) {
         carService.insertCar(car);
         return JSONResult.ok();
+    }
+
+
+    /**
+     * 对车辆进行模糊查询
+     */
+    @GetMapping("/findByKeyWord")
+    public JSONResult findByKeyWord(@RequestParam("keyWord") String keyWord){
+        List<Car> carsList = new ArrayList<Car>();
+        carsList = carService.findByKeyWord(keyWord);
+        return JSONResult.ok(carsList);
+    }
+
+    /**
+     * 对车辆进行模糊查询
+     */
+    @PostMapping("/findByKeyWordByPage")
+    public JSONResult findByKeyWordByPage(@RequestBody(required = false) KeyWordPage keyWordPage){
+        List<Car> carsList = new ArrayList<Car>();
+        carsList = carService.findByKeyWordByPage(keyWordPage);
+        return JSONResult.ok(carsList);
     }
 }
